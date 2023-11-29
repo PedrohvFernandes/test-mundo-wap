@@ -1,0 +1,10 @@
+React
+React hook forms
+Context api
+componentização
+YUP
+styled-components
+TypeScript
+Ciclo de vida do react tem que esta perfeito para evitar memory leak(vazamento de memoria)
+
+https://mail.google.com/mail/u/0/#inbox/FMfcgzGwHpbcMChGqpGQSNZjJNbJRJGg
