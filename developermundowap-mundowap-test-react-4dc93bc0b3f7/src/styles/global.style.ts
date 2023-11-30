@@ -7,10 +7,6 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  /* :root {
-    --twitter-blue: #1da1f2;
-  } */
-
   body {
     -webkit-font-smoothing: antialiased;
     font: 400 1rem ${props => props.theme.font.fontFamily.roboto};
@@ -27,5 +23,6 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     color: inherit;
+    text-decoration: none;
   }
 `
