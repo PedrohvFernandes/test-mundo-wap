@@ -3,7 +3,10 @@ export const Theme = {
   color: {
     background: {
       main: '#fff',
-      contrastText: '#141827'
+      contrastText: '#141827',
+      backgroundOpacity: {
+        opacity8: 'rgba(20, 24,39, 0.8)'
+      }
     },
     primary: {
       main: '#ebeef0',

@@ -4,8 +4,8 @@ import { X } from '@assets/icons'
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.color.background.contrastText};
-  opacity: 0.8;
+  background-color: ${({ theme }) => theme.color.background.backgroundOpacity.opacity8};
+  /* opacity: 0.8; */
   position: fixed;
   z-index: 100;
   top: 0;
