@@ -1,4 +1,4 @@
-import * as path from 'path';
+const path = require('path');
 
 module.exports = {
   webpack: {
@@ -15,8 +15,7 @@ module.exports = {
       '@pages': path.resolve(__dirname, './src/pages'),
       '@routes': path.resolve(__dirname, './src/routes'),
       '@utils': path.resolve(__dirname, './src/utils'),
-      '@lib': path.resolve(__dirname, './src/lib'),
-      '@typings': path.resolve(__dirname, './src/typings'),
+      '@lib': path.resolve(__dirname, './src/lib')
     },
   },
 };
