@@ -1,6 +1,8 @@
 import { useRef, useEffect, useCallback } from 'react'
 import { useSpring, animated } from '@react-spring/web'
 
+import { FormTaskCreation } from '@components/form-task-creation'
+
 import {
   CloseModalButton,
   Container,
@@ -22,7 +24,7 @@ export function ModalTaskCreation({
 
   const animation = useSpring({
     config: {
-      duration: 250
+      duration: 300
     },
     opacity: showModal ? 1 : 0,
     transform: showModal ? `translateY(0%)` : `translateY(-100%)`
@@ -59,6 +61,7 @@ export function ModalTaskCreation({
           <animated.div style={animation}>
             <ModalWrapper>
               <ModalContent>
+                <FormTaskCreation></FormTaskCreation>
               </ModalContent>
               <CloseModalButton
                 aria-label="close modal"

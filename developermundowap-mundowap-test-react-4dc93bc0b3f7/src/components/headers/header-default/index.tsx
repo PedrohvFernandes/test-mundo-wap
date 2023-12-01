@@ -4,10 +4,18 @@ import { ButtonDefault } from '@components/buttons/button-default'
 import { LogoMundoWap } from '@components/logo-mundo-wap'
 import { ModalTaskCreation } from '@components/modal-task-creation'
 
-import { ContainerContentHeader, HeaderDefaultStyled } from './styles'
+import { usePushTaskList } from '@hooks/push-task-list'
+
+import {
+  ContainerContentHeader,
+  HeaderDefaultStyled,
+  QuantityTasks
+} from './styles'
 
 export function HeaderDefault() {
   const [showModal, setShowModal] = useState<boolean>(false)
+
+  const { taskQuantity } = usePushTaskList()
 
   const handleShowModal = () => {
     setShowModal(prev => !prev)
@@ -17,16 +25,17 @@ export function HeaderDefault() {
     <HeaderDefaultStyled>
       <ContainerContentHeader>
         <LogoMundoWap width={3} />
+        <strong>
+          Quantidade de tarefas:
+          <QuantityTasks quantityTasks={taskQuantity}>
+            {taskQuantity}
+          </QuantityTasks>
+        </strong>
 
-        <strong>Contado de tarefas context</strong>
-
-        <ButtonDefault
-          $bgContrast={false}
-          onClick={handleShowModal}
-        >
+        <ButtonDefault $bgContrast={false} onClick={handleShowModal}>
           Adicionar tarefa
         </ButtonDefault>
-        <ModalTaskCreation showModal={showModal} setShowModal={setShowModal}/>
+        <ModalTaskCreation showModal={showModal} setShowModal={setShowModal} />
       </ContainerContentHeader>
     </HeaderDefaultStyled>
   )

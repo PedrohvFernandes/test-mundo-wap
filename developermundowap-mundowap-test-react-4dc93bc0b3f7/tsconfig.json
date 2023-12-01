@@ -29,6 +29,7 @@
       "@contexts/*": ["contexts/*"],
       "@pages/*": ["pages/*"],
       "@lib/*": ["lib/*"],
+      "@typings/*": ["typings/*"],
     }
   },
   "include": [

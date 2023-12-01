@@ -32,6 +32,10 @@ export const Theme = {
       main: '#e0245e',
       contrastText: '#b61a4a'
     },
+    success: {
+      main: '#17bf63',
+      contrastText: '#0f9d58'
+    },
     white: {
       main: '#fff',
       contrastText: '#000'

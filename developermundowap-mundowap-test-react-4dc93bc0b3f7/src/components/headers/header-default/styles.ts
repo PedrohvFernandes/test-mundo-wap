@@ -2,6 +2,10 @@ import styled from 'styled-components'
 
 import { ContainerDefaultSpaceBetweenContent } from '@components/containers/container-space-between/styles'
 
+interface IQuantityTasksProps {
+  quantityTasks: number
+}
+
 export const HeaderDefaultStyled = styled.header`
   position: fixed;
   width: 100%;
@@ -22,8 +26,31 @@ export const ContainerContentHeader = styled(
   position: relative;
   > strong {
     font-size: ${props => props.theme.font.defaultS};
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
     @media ${props => props.theme.deviceMax.tablet} {
       font-size: ${props => props.theme.font.defaultL};
     }
   }
+`
+export const QuantityTasks = styled.strong<IQuantityTasksProps>`
+  background-color: ${({ theme, quantityTasks }) => {
+    if (quantityTasks >= 10) {
+      return theme.color.error.main
+    }
+    if (quantityTasks <= 3) {
+      return theme.color.success.main
+    }
+
+    return theme.color.tertiary.main
+  }};
+  color: ${props => props.theme.color.background.contrastText};
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

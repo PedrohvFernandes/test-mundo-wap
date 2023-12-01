@@ -50,4 +50,11 @@ export const CloseModalButton = styled(X)`
   top: 20px;
   right: 20px;
   z-index: 10;
+  width: 2rem;
+  height: 2rem;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: ${({ theme }) => theme.color.error.contrastText};
+    transform: scale(1.1);
+  }
 `
