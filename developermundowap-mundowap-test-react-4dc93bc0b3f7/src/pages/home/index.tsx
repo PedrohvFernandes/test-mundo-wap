@@ -1,9 +1,9 @@
-import { Container } from './styles'
+import { ContainerDefault } from '@components/containers/container-default'
 
 export function Home() {
   return (
-    <Container>
+    <ContainerDefault>
       <div>Home</div>
-    </Container>
+    </ContainerDefault>
   )
 }

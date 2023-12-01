@@ -12,18 +12,6 @@ export const FooterContainer = styled.footer`
     line-height: 1.5rem;
   }
 `
-export const FooterContent = styled.div`
-  width: 100%;
-  margin-inline: auto;
-  padding-inline: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  @media ${props => props.theme.deviceMax.laptopL} {
-    max-width: 1400px;
-  }
-`
 
 export const FooterLogo = styled.div`
   display: flex;

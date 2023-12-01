@@ -6,19 +6,16 @@ import useGetDateFormatted from '@hooks/get-date-formatted'
 
 import { LogoMundoWap } from '../logo-mundo-wap'
 
-import {
-  FooterContainer,
-  FooterContent,
-  FooterLogo,
-  LinkGithub
-} from './styles'
+import { ContainerDefaultSpaceBetweenContent } from '@components/containers/container-space-between'
+
+import { FooterContainer, FooterLogo, LinkGithub } from './styles'
 
 export function Footer() {
   const { formattedCurrentYear } = useGetDateFormatted()
 
   return (
     <FooterContainer>
-      <FooterContent>
+      <ContainerDefaultSpaceBetweenContent>
         <FooterLogo>
           <LogoMundoWap />
           <span>© {formattedCurrentYear().year} Mundo Wap.</span>
@@ -30,7 +27,7 @@ export function Footer() {
           <GithubIcon />
           <span>Meu Github</span>
         </LinkGithub>
-      </FooterContent>
+      </ContainerDefaultSpaceBetweenContent>
     </FooterContainer>
   )
 }

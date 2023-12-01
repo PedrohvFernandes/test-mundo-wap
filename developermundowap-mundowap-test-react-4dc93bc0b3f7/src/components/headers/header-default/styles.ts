@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { ContainerDefaultSpaceBetweenContent } from '@components/containers/container-space-between/styles'
+
 export const HeaderDefaultStyled = styled.header`
   position: fixed;
   width: 100%;
@@ -14,17 +16,9 @@ export const HeaderDefaultStyled = styled.header`
   justify-content: space-between;
   animation: shadowAnimationOrange 5s infinite;
 `
-
-export const Content = styled.div`
-  width: 100%;
-  margin-inline: auto;
-  padding-inline: 2rem;
-  padding-block: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-
+export const ContainerContentHeader = styled(
+  ContainerDefaultSpaceBetweenContent
+)`
   > strong {
     font-size: ${props => props.theme.font.defaultS};
     @media ${props => props.theme.deviceMax.tablet} {

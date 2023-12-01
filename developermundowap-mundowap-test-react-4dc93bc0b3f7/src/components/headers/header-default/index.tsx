@@ -1,12 +1,12 @@
-import { ButtonDefault } from '../../buttons/button-default'
-import { LogoMundoWap } from '../../logo-mundo-wap'
+import { ButtonDefault } from '@components/buttons/button-default'
+import { LogoMundoWap } from '@components/logo-mundo-wap'
 
-import { Content, HeaderDefaultStyled } from './styles'
+import { ContainerContentHeader, HeaderDefaultStyled } from './styles'
 
 export function HeaderDefault() {
   return (
     <HeaderDefaultStyled>
-      <Content>
+      <ContainerContentHeader>
         <LogoMundoWap width={3} />
 
         <strong>Contado de tarefas context</strong>
@@ -19,7 +19,7 @@ export function HeaderDefault() {
         >
           Adicionar tarefa
         </ButtonDefault>
-      </Content>
+      </ContainerContentHeader>
     </HeaderDefaultStyled>
   )
 }
