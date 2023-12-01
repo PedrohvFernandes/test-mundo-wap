@@ -1,4 +1,5 @@
-const path = require('path');
+import * as path from 'path';
+
 module.exports = {
   webpack: {
     // Basicamente como o vite(tipo um webpack) o craco vai resolver os path mappings do typescript
