@@ -1,8 +1,9 @@
-import { GithubIcon } from '../../assets/icons'
+import { GithubIcon } from '@assets/icons'
 
-import { ConfigBases } from '../../config'
+import { ConfigBases } from '@config/index'
 
-import useGetDateFormatted from '../../hooks/get-date-formatted'
+import useGetDateFormatted from '@hooks/get-date-formatted'
+
 import { LogoMundoWap } from '../logo-mundo-wap'
 
 import {
