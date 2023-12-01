@@ -19,6 +19,7 @@ export const HeaderDefaultStyled = styled.header`
 export const ContainerContentHeader = styled(
   ContainerDefaultSpaceBetweenContent
 )`
+  position: relative;
   > strong {
     font-size: ${props => props.theme.font.defaultS};
     @media ${props => props.theme.deviceMax.tablet} {

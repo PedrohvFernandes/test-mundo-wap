@@ -1,9 +1,18 @@
+import { useState } from 'react'
+
 import { ButtonDefault } from '@components/buttons/button-default'
 import { LogoMundoWap } from '@components/logo-mundo-wap'
+import { ModalTaskCreation } from '@components/modal-task-creation'
 
 import { ContainerContentHeader, HeaderDefaultStyled } from './styles'
 
 export function HeaderDefault() {
+  const [showModal, setShowModal] = useState<boolean>(false)
+
+  const handleShowModal = () => {
+    setShowModal(prev => !prev)
+  }
+
   return (
     <HeaderDefaultStyled>
       <ContainerContentHeader>
@@ -13,12 +22,11 @@ export function HeaderDefault() {
 
         <ButtonDefault
           $bgContrast={false}
-          onClick={() => {
-            console.log('teste')
-          }}
+          onClick={handleShowModal}
         >
           Adicionar tarefa
         </ButtonDefault>
+        <ModalTaskCreation showModal={showModal} setShowModal={setShowModal}/>
       </ContainerContentHeader>
     </HeaderDefaultStyled>
   )
