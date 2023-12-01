@@ -7,12 +7,12 @@ export function HeaderDefault() {
   return (
     <HeaderDefaultStyled>
       <Content>
-        <LogoMundoWap />
+        <LogoMundoWap width={3} />
 
         <strong>Contado de tarefas context</strong>
 
         <ButtonDefault
-          bgContrast={false}
+          $bgContrast={false}
           onClick={() => {
             console.log('teste')
           }}

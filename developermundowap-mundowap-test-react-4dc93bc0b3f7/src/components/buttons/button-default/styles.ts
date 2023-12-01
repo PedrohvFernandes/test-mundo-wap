@@ -1,16 +1,17 @@
 import styled from 'styled-components'
 
 interface IButtonDefaultStyledProps {
-  bgContrast: boolean
+  // Tem que usar $ para o styled components entender que é uma propriedade boolean. Ele(navegador) não reconhece o atributo bgContrast, portanto o erro Warning: Received `false` for a non-boolean attribute é gerado.
+  $bgContrast: boolean
 }
 
 export const ButtonDefaultStyled = styled.button<IButtonDefaultStyledProps>`
   background-color: ${props =>
-    props.bgContrast
+    props.$bgContrast
       ? props.theme.color.background.contrastText
       : props.theme.color.background.main};
   color: ${props =>
-    props.bgContrast
+    props.$bgContrast
       ? props.theme.color.background.main
       : props.theme.color.background.contrastText};
   border: none;

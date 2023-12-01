@@ -12,6 +12,7 @@ export const HeaderDefaultStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  animation: shadowAnimationOrange 5s infinite;
 `
 
 export const Content = styled.div`

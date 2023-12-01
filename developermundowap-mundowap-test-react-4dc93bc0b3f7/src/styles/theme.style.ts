@@ -33,6 +33,15 @@ export const Theme = {
       main: '#fff',
       contrastText: '#000'
     },
+    orangeRGBA: {
+      main: 'rgba(255,117,24,0.4)',
+      decremented: {
+        decremented3: 'rgba(255,117,24,0.3)',
+        decremented2: 'rgba(255,117,24,0.2)',
+        decremented1: 'rgba(255,117,24,0.1)',
+        decremented5: 'rgba(255,117,24,0.05)'
+      }
+    },
     black: {
       main: '#000',
       contrastText: '#fff'

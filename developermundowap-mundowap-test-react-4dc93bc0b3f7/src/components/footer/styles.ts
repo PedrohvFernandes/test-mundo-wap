@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FooterContainer = styled.footer`
   width: 100%;
-  padding-block: 1rem;
+  padding-block: 1.5rem;
   font-size: ${props => props.theme.font.defaultXS};
   line-height: 1rem;
   background-color: ${props => props.theme.color.background.contrastText};

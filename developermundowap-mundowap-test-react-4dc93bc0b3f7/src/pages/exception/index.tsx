@@ -10,8 +10,8 @@ import {
   Wrapper
 } from './styles'
 
-import { ButtonDefault } from '../../components/buttons/button-default'
-import { ConfigRoutes } from '../../config'
+import { ButtonDefault } from '@components/buttons/button-default'
+import { ConfigRoutes } from '@config/index'
 
 export function Exception() {
   const navigate = useNavigate()
@@ -29,13 +29,13 @@ export function Exception() {
           </Description>
           <ButtonDiv>
             <ButtonDefault
-              bgContrast={true}
+              $bgContrast={true}
               onClick={() => navigate(ConfigRoutes.mundoWap.default.source)}
             >
               Voltar para a página inicial
             </ButtonDefault>
             <Description>ou</Description>
-            <ButtonDefault onClick={() => navigate(-1)} bgContrast={true}>
+            <ButtonDefault onClick={() => navigate(-1)} $bgContrast={true}>
               Voltar para a página anterior
             </ButtonDefault>
           </ButtonDiv>
