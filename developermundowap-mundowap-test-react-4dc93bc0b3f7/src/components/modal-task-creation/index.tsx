@@ -1,8 +1,6 @@
 import { useRef, useEffect, useCallback } from 'react'
 import { useSpring, animated } from '@react-spring/web'
 
-import { ButtonDefault } from '@components/buttons/button-default'
-
 import {
   CloseModalButton,
   Container,
