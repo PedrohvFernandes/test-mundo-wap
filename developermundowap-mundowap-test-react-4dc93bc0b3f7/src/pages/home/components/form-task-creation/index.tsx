@@ -13,6 +13,7 @@ import { ConfirmTaskCreationForm } from './components/confirm-task-creation-form
 import { ButtonDefault } from '@components/buttons/button-default'
 
 import { ConfirmTaskCreationContainer } from './styles'
+import { useEffect } from 'react'
 
 const taskSchema: ObjectSchema<ITasks> = object().shape({
   id: string().uuid().required(),
@@ -34,7 +35,8 @@ export function FormTaskCreation() {
     taskToEdit,
     addTaskToListEditing,
     generateRandomTask,
-    taskRandomLoading
+    taskRandomLoading,
+    controller
   } = usePushTaskList()
 
   // Quando fosse editar, era repassar o id da task para o form, recriar a data e o status + o que foi passado para editar e passar para o form
@@ -63,6 +65,13 @@ export function FormTaskCreation() {
     // Limpar os campos do formulário
     confirmTaskCreationForm.reset()
   }
+
+  useEffect(() => {
+    // Limpar o controller quando o componente for desmontado
+    return () => {
+      controller.abort()
+    }
+  }, [])
 
   return (
     <FormProvider {...confirmTaskCreationForm}>

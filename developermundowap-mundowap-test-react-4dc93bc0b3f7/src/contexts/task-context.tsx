@@ -25,6 +25,9 @@ interface ITaskListContextType {
   // Função para abrir o modal
   openModal: React.Dispatch<React.SetStateAction<boolean>>
 
+  // Controller para abortar a requisição
+  controller: AbortController
+
   // Adiciona uma task na lista
   addTaskToList: (task: ITasks) => void
 
@@ -101,6 +104,8 @@ export function TaskListContextProvider({
   const [taskToEdit, setTaskToEdit] = useState<IConfirmTaskCreationFormProps>()
   const [taskRandomLoading, setTaskRandomLoading] = useState<boolean>(false)
 
+  const controller = new AbortController()
+
   const taskQuantity = taskItems.length
   const taskQuantityCompleted = completedTasks.length
 
@@ -116,7 +121,7 @@ export function TaskListContextProvider({
       if (taskAlreadyExistsInList < 0) {
         draft.push(task)
         toast.success(`A task: ${task.title} foi criada com sucesso! 🥳`)
-        setShowModal(prev => !prev)
+        setShowModal(false)
       } else {
         toast.error(`A task: ${task.title} já existe na lista de tarefas! 🤨`)
       }
@@ -249,7 +254,9 @@ export function TaskListContextProvider({
   const generateRandomTask = async () => {
     try {
       setTaskRandomLoading(true)
-      const response = await api.get('/api/activity')
+      const response = await api.get('/api/activity', {
+        signal: controller.signal
+      })
 
       const newTask: ITasks = {
         id: uuidv4(),
@@ -357,7 +364,8 @@ export function TaskListContextProvider({
         clearEditTask,
         addTaskToListEditing,
         generateRandomTask,
-        taskRandomLoading
+        taskRandomLoading,
+        controller
       }}
     >
       {/* Aqui é tudo que vai ficar em volta dessa contexto, que vai ter acesso a isso, na maioria dos casos é a aplicação toda, a onde isso é feito no App.tsx ou main.tsx */}
