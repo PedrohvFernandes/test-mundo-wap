@@ -39,7 +39,6 @@ export function FormTaskCreation() {
     controller
   } = usePushTaskList()
 
-  // Quando fosse editar, era repassar o id da task para o form, recriar a data e o status + o que foi passado para editar e passar para o form
   const confirmTaskCreationForm = useForm<TaskData>({
     resolver: yupResolver(taskSchema),
     defaultValues: {
