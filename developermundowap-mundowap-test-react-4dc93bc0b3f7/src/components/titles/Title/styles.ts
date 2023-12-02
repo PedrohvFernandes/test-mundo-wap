@@ -10,9 +10,10 @@ export const Title = styled.h1<ITitleProps>`
   line-height: 2rem;
   color: ${({ theme }) => theme.color.orange.main};
   animation: fadeIn 1.5s ease-in-out;
-  text-align: ${({ textalign }) => textalign ?? 'center'};
+  text-align: center;
 
   @media ${({ theme }) => theme.deviceMax.tablet} {
     font-size: ${({ theme }) => theme.font.defaultL};
+    text-align: ${({ textalign }) => textalign ?? 'center'};
   }
 `

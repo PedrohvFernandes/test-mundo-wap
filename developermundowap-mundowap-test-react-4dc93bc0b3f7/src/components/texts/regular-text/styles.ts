@@ -9,9 +9,10 @@ export const Text = styled.p<IRegularText>`
   font-size: ${({ theme }) => theme.font.defaultXS};
   line-height: 2rem;
   color: ${({ theme }) => theme.color.background.contrastText};
-  text-align: ${({ textalign }) => textalign ?? 'center'};
+  text-align: center;
 
-  @media ${({ theme }) => theme.deviceMax.tablet} {
+  @media ${({ theme }) => theme.deviceMax.mobileL} {
     font-size: ${({ theme }) => theme.font.defaultS};
+    text-align: ${({ textalign }) => textalign ?? 'center'};
   }
 `

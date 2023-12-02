@@ -4,14 +4,20 @@ import { Trash2, Pen } from '@assets/icons'
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   align-items: center;
-  gap: 1rem;
+
+  @media ${({ theme }) => theme.deviceMax.mobileL} {
+    flex-direction: row;
+    gap: 1rem;
+  }
 `
 
 export const Content = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex: 1;
   flex-wrap: wrap;
   margin-bottom: 1rem;
@@ -23,6 +29,11 @@ export const Content = styled.div`
   padding: 0.75rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
+
+  @media ${({ theme }) => theme.deviceMax.mobileL} {
+    justify-content: space-between;
+    padding: 1rem;
+  }
 `
 
 export const ContentDescription = styled.div`
@@ -32,7 +43,7 @@ export const ContentDescription = styled.div`
 
   > h3 {
     color: ${({ theme }) => theme.color.black.contrastText};
-  } 
+  }
 `
 
 export const CheckBox = styled.input`
@@ -63,9 +74,11 @@ export const DescriptionTask = styled.p`
   font-size: ${({ theme }) => theme.font.default};
   margin-right: 0.75rem;
   font-style: italic;
+  text-align: center;
   color: ${({ theme }) => theme.color.alert.main};
-  @media ${({ theme }) => theme.deviceMax.tablet} {
+  @media ${({ theme }) => theme.deviceMax.mobileL} {
     font-size: ${({ theme }) => theme.font.defaultXS};
+    text-align: start;
   }
 `
 
@@ -74,7 +87,7 @@ export const ButtonDelete = styled(Trash2)`
   height: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
+  color: ${({ theme }) => theme.color.black.contrastText};
   &:hover {
     color: ${({ theme }) => theme.color.error.main};
   }
@@ -85,8 +98,15 @@ export const ButtonEdit = styled(Pen)`
   height: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
+  color: ${({ theme }) => theme.color.black.contrastText};
   &:hover {
     color: ${({ theme }) => theme.color.tertiary.main};
   }
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 `

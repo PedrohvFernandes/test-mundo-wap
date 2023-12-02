@@ -7,6 +7,7 @@ import { usePushTaskList } from '@hooks/push-task-list'
 import { useGetDateFormatted } from '@hooks/get-date-formatted'
 
 import {
+  ButtonContainer,
   ButtonDelete,
   ButtonEdit,
   CheckBox,
@@ -53,18 +54,21 @@ export function CardTaskCreationDefault({
           <RegularTitle textalign="start">{task.title}</RegularTitle>
           <DescriptionTask>{task.description}</DescriptionTask>
         </ContentDescription>
+
         <RegularText textalign="end">{currentDate}</RegularText>
+        <ButtonContainer>
+          <ButtonDelete
+            onClick={() => {
+              checkTaskItemOrUnCheckTaskItem === 'check'
+                ? removeTaskItem(task.id)
+                : removeTaskItemCompleted(task.id)
+            }}
+          />
+          {checkTaskItemOrUnCheckTaskItem === 'check' && (
+            <ButtonEdit onClick={() => editTaskItem(task.id)} />
+          )}
+        </ButtonContainer>
       </Content>
-      {checkTaskItemOrUnCheckTaskItem === 'check' && (
-        <ButtonEdit onClick={() => editTaskItem(task.id)} />
-      )}
-      <ButtonDelete
-        onClick={() => {
-          checkTaskItemOrUnCheckTaskItem === 'check'
-            ? removeTaskItem(task.id)
-            : removeTaskItemCompleted(task.id)
-        }}
-      />
     </Container>
   )
 }
