@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Trash2, Pen } from '@assets/icons'
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -36,7 +38,6 @@ export const ContentDescription = styled.div`
 export const CheckBox = styled.input`
   width: 1.5rem;
   height: 1.5rem;
-  border-radius: 0.25rem;
   cursor: pointer;
 
   &:hover + ${Content} {
@@ -65,5 +66,27 @@ export const DescriptionTask = styled.p`
   color: ${({ theme }) => theme.color.alert.main};
   @media ${({ theme }) => theme.deviceMax.tablet} {
     font-size: ${({ theme }) => theme.font.defaultXS};
+  }
+`
+
+export const ButtonDelete = styled(Trash2)`
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.color.error.main};
+  }
+`
+
+export const ButtonEdit = styled(Pen)`
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.color.tertiary.main};
   }
 `

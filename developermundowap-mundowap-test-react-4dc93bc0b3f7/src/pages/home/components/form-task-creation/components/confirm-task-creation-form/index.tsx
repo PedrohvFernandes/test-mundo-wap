@@ -7,10 +7,17 @@ import {
 } from './styles'
 import { TaskFormInputs } from './task-form-inputs'
 
-export function ConfirmTaskCreationForm() {
+import { IConfirmTaskCreationFormProps } from '@typings/typings-task'
+
+export function ConfirmTaskCreationForm({
+  taskToEdit
+}: Readonly<IConfirmTaskCreationFormProps>) {
   return (
     <ConfirmTaskCreationFormContainer>
       <SubTitle>Esta atarefado ? 🥲 Então crie sua tarefa aqui: </SubTitle>
+      {taskToEdit?.edit && (
+        <SubTitle>Editando: {taskToEdit?.task.title}</SubTitle>
+      )}
       <FormSectionContainer>
         <Description>
           Coloque o título da tarefa e uma descrição para que você possa se

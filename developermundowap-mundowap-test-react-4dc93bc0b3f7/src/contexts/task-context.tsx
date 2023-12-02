@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify'
 
-import { ITasks } from '@typings/typings-task'
-
 // O produce é uma função do immer que recebe um estado e uma função que vai modificar esse estado, e retorna um novo estado. Ele deixa o código mais legível e mais fácil de entender, nao alterando a forma do react ser perfomatico que é a questao da imutabilidade.
 import { produce } from 'immer'
 import { createContext, ReactNode, useEffect, useState } from 'react'
+
+import { IConfirmTaskCreationFormProps, ITasks } from '@typings/typings-task'
 
 // O type do contexto das tasks
 interface ITaskListContextType {
@@ -18,6 +18,11 @@ interface ITaskListContextType {
   // A quantidade de tasks concluídas
   taskQuantityCompleted: number
 
+  // O estado do modal
+  showModal: boolean
+  // Função para abrir o modal
+  openModal: React.Dispatch<React.SetStateAction<boolean>>
+
   // Adiciona uma task na lista
   addTaskToList: (task: ITasks) => void
 
@@ -30,6 +35,16 @@ interface ITaskListContextType {
   checkTaskItem: (taskItemId: string) => void
   // Desmarca a task como feita
   unCheckTaskItem: (taskItemId: string) => void
+
+  // Edita uma task
+  editTaskItem: (taskItemId: string) => void
+  // O estado de edit
+  taskToEdit: IConfirmTaskCreationFormProps | undefined
+  // Editando uma task
+  addTaskToListEditing: (task: ITasks) => void
+
+  // Limpa o edit task
+  clearEditTask: () => void
 
   // Limpa a lista de tasks
   clearListTask: () => void
@@ -75,6 +90,9 @@ export function TaskListContextProvider({
     }
     return taskItems.filter(task => task.status === 'checked')
   })
+
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [taskToEdit, setTaskToEdit] = useState<IConfirmTaskCreationFormProps>()
 
   const taskQuantity = taskItems.length
   const taskQuantityCompleted = completedTasks.length
@@ -180,6 +198,40 @@ export function TaskListContextProvider({
   }
 
   // Criar uma função para editar uma task
+  const editTaskItem = (taskItemId: string) => {
+    setShowModal(prev => !prev)
+    setTaskToEdit({
+      taskToEdit: {
+        task: taskItems.find(taskItem => taskItem.id === taskItemId) as ITasks,
+        edit: true
+      }
+    })
+  }
+
+  const addTaskToListEditing = (task: ITasks) => {
+    produce(taskItems, draft => {
+      const taskAlreadyExistsInList = completedTasks.findIndex(
+        taskItem => taskItem.id === task.id
+      )
+      console.log(taskItems)
+      console.log(task.id)
+      if (taskAlreadyExistsInList >= 0) {
+        setTaskItems([
+          ...taskItems,
+          {
+            ...taskItems[taskAlreadyExistsInList],
+            title: task.title,
+            description: task.description,
+            createdAt: task.createdAt,
+            status: task.status
+          }
+        ])
+        toast.success(
+          `A task: ${completedTasks[taskAlreadyExistsInList].title} foi alterada com sucesso! 🥳`
+        )
+      }
+    })
+  }
   // Criar uma função para gerar uma tarefa aleatória atraves da api
 
   // Limpar todas as tarefas da lista
@@ -207,6 +259,10 @@ export function TaskListContextProvider({
     }
     setTaskItems([])
     toast.success('Lista de tarefas não concluídas limpa com sucesso! 🥳')
+  }
+
+  const clearEditTask = () => {
+    setTaskToEdit(undefined)
   }
 
   useEffect(() => {
@@ -238,7 +294,13 @@ export function TaskListContextProvider({
         unCheckTaskItem,
         clearListTask,
         clearListTaskCompleted,
-        clearListTaskPending
+        clearListTaskPending,
+        editTaskItem,
+        showModal,
+        openModal: setShowModal,
+        taskToEdit,
+        clearEditTask,
+        addTaskToListEditing
       }}
     >
       {/* Aqui é tudo que vai ficar em volta dessa contexto, que vai ter acesso a isso, na maioria dos casos é a aplicação toda, a onde isso é feito no App.tsx ou main.tsx */}

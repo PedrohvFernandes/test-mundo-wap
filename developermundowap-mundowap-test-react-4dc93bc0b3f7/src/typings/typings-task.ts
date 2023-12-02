@@ -13,4 +13,13 @@ interface ITaskProps {
   task: ITasks
 }
 
-export type { ITasks, ITaskProps }
+interface IConfirmTaskCreationFormProps {
+  taskToEdit:
+    | {
+        task: ITasks
+        edit: boolean
+      }
+    | undefined
+}
+
+export type { ITasks, ITaskProps, IConfirmTaskCreationFormProps }

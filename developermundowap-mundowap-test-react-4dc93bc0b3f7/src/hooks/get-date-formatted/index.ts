@@ -1,4 +1,4 @@
-import { format, startOfDay, endOfDay } from 'date-fns'
+import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
 const today = new Date()

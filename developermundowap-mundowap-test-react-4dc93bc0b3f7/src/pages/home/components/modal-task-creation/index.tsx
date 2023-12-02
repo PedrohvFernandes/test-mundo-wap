@@ -3,6 +3,8 @@ import { useSpring, animated } from '@react-spring/web'
 
 import { FormTaskCreation } from '../form-task-creation'
 
+import { usePushTaskList } from '@hooks/push-task-list'
+
 import {
   CloseModalButton,
   Container,
@@ -21,6 +23,8 @@ export function ModalTaskCreation({
 }: Readonly<IModalTaskCreationProps>) {
   const modalRef = useRef<HTMLDivElement>(null)
 
+  const { clearEditTask } = usePushTaskList()
+
   const animation = useSpring({
     config: {
       duration: 300
@@ -33,6 +37,7 @@ export function ModalTaskCreation({
     // Se o elemento clicado for igual a div que contém a referência do modal então feche o modal
     if (modalRef.current === event.target) {
       setShowModal(false)
+      clearEditTask()
     }
   }
 
@@ -41,6 +46,7 @@ export function ModalTaskCreation({
       // Se o showModal for true e a tecla pressionada for a tecla ESC então feche o modal
       if (e.key === 'Escape' && showModal) {
         setShowModal(false)
+        clearEditTask()
       }
     },
     [setShowModal, showModal]
@@ -64,6 +70,7 @@ export function ModalTaskCreation({
                 aria-label="close modal"
                 onClick={() => {
                   setShowModal(prev => !prev)
+                  clearEditTask()
                 }}
               ></CloseModalButton>
             </ModalWrapper>

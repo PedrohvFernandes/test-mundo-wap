@@ -27,21 +27,30 @@ const taskSchema: ObjectSchema<ITasks> = object().shape({
 type TaskData = InferType<typeof taskSchema>
 
 export function FormTaskCreation() {
-  const { addTaskToList } = usePushTaskList()
+  const { addTaskToList, taskToEdit, addTaskToListEditing } = usePushTaskList()
 
+  // Quando fosse editar, era repassar o id da task para o form, recriar a data e o status + o que foi passado para editar e passar para o form
   const confirmTaskCreationForm = useForm<TaskData>({
     resolver: yupResolver(taskSchema),
     defaultValues: {
-      id: uuidv4(),
+      id: taskToEdit?.taskToEdit?.task.id ?? uuidv4(),
       createdAt: new Date(Date.now()),
-      status: 'pending'
+      status: 'pending',
+      title: taskToEdit?.taskToEdit?.task.title ?? '',
+      description: taskToEdit?.taskToEdit?.task.description ?? ''
     }
   })
 
   const { handleSubmit } = confirmTaskCreationForm
 
   const handleConfirmCreateTask = (task: ITasks) => {
-    addTaskToList(task)
+    // Se o taskToEdit.edit for true então edite a task
+    if (taskToEdit?.taskToEdit?.edit) {
+      addTaskToListEditing(task)
+    } else {
+      // Se não adicione a task
+      addTaskToList(task)
+    }
     // Limpar os campos do formulário
     confirmTaskCreationForm.reset()
   }
@@ -51,9 +60,9 @@ export function FormTaskCreation() {
       <ConfirmTaskCreationContainer
         onSubmit={handleSubmit(handleConfirmCreateTask)}
       >
-        <ConfirmTaskCreationForm />
+        <ConfirmTaskCreationForm taskToEdit={taskToEdit?.taskToEdit} />
         <ButtonDefault type="submit" $bgContrast={true}>
-          Criar tarefa
+          {taskToEdit?.taskToEdit?.edit ? 'Editar' : 'Criar'} tarefa
         </ButtonDefault>
       </ConfirmTaskCreationContainer>
     </FormProvider>

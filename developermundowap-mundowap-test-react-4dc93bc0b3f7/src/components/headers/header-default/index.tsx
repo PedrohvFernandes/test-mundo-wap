@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { ButtonDefault } from '@components/buttons/button-default'
 import { LogoMundoWap } from '@components/logo-mundo-wap'
 import { ModalTaskCreation } from '@pages/home/components/modal-task-creation'
@@ -13,12 +11,10 @@ import {
 } from './styles'
 
 export function HeaderDefault() {
-  const [showModal, setShowModal] = useState<boolean>(false)
-
-  const { taskQuantity } = usePushTaskList()
+  const { taskQuantity, showModal, openModal } = usePushTaskList()
 
   const handleShowModal = () => {
-    setShowModal(prev => !prev)
+    openModal(prev => !prev)
   }
 
   return (
@@ -35,7 +31,7 @@ export function HeaderDefault() {
         <ButtonDefault $bgContrast={false} onClick={handleShowModal}>
           Adicionar tarefa
         </ButtonDefault>
-        <ModalTaskCreation showModal={showModal} setShowModal={setShowModal} />
+        <ModalTaskCreation showModal={showModal} setShowModal={openModal} />
       </ContainerContentHeader>
     </HeaderDefaultStyledContainer>
   )
