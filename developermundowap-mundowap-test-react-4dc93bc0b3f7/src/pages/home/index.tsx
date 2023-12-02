@@ -1,9 +1,10 @@
 import { ContainerDefault } from '@components/containers/container-default'
-// Formatar a data com o date-fns das tasks
+import { AllTasks } from './components/all-tasks'
+
 export function Home() {
   return (
     <ContainerDefault>
-      <div>Home</div>
+      <AllTasks/>
     </ContainerDefault>
   )
 }

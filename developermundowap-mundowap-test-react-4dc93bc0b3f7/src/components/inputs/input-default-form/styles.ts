@@ -43,7 +43,7 @@ export const InputStyled = styled.input`
   outline: none;
   padding: 1rem;
   height: 100%;
-  font-size: 0.8rem;
+  font-size: ${({ theme }) => theme.font.defaultXS};
   color: ${({ theme }) => theme.color.black.main};
 
   &::placeholder {
@@ -58,11 +58,11 @@ export const InputStyled = styled.input`
   }
 
   @media ${({ theme }) => theme.deviceMax.tablet} {
-    font-size: 1rem;
+    font-size: ${({ theme }) => theme.font.defaultS};
   }
 `
 export const RightText = styled.span`
-  font-size: 0.75rem;
+  font-size: ${({ theme }) => theme.font.default};
   margin-right: 0.75rem;
   font-style: italic;
   color: ${({ theme }) => theme.color.alert.main};

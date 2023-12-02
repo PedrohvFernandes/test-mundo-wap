@@ -22,11 +22,14 @@ export const ContainerContentHeader = styled(
 )`
   position: relative;
   > strong {
-    font-size: ${props => props.theme.font.defaultS};
+    font-size: ${props => props.theme.font.defaultXS};
     display: flex;
     gap: 0.5rem;
     align-items: center;
     justify-content: center;
+    @media ${props => props.theme.deviceMax.mobileL} {
+      font-size: ${props => props.theme.font.defaultS};
+    }
     @media ${props => props.theme.deviceMax.tablet} {
       font-size: ${props => props.theme.font.defaultL};
     }

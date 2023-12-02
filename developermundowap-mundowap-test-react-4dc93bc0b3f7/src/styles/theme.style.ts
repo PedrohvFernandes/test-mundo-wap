@@ -74,6 +74,7 @@ export const Theme = {
 
   font: {
     small: '0.5rem',
+    default: '0.75rem',
     defaultXS: '0.875rem',
     defaultS: '1rem',
     defaultM: '1.25rem',
