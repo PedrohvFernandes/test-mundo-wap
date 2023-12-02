@@ -3,12 +3,12 @@ import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 import { ContainerDefault } from '@components/containers/container-default'
-import { AllTasks } from './components/all-tasks'
+import { Title } from '@components/titles/title'
 import { usePushTaskList } from '@hooks/push-task-list'
-import { Title } from '@components/titles/Title'
+import { AllTasks } from './components/all-tasks'
 
 export function Home() {
-  const { taskQuantity } = usePushTaskList()
+  const { taskQuantity, taskQuantityCompleted } = usePushTaskList()
 
   useEffect(() => {
     toast.success('Bem vindo ao Mundo Wap!')
@@ -16,24 +16,28 @@ export function Home() {
 
   useEffect(() => {
     if (taskQuantity === 0) {
-      toast.success('Você não possui tarefas cadastradas')
+      toast.success('Você não possui tarefas cadastradas para fazer')
     }
     if (taskQuantity <= 3 && taskQuantity > 0) {
-      toast.info(`Você possui poucas tarefas cadastradas (${taskQuantity})`)
+      toast.info(
+        `Você possui poucas tarefas cadastradas para fazer (${taskQuantity})`
+      )
     }
 
     if (taskQuantity > 3 && taskQuantity < 10) {
-      toast.info(`Você possui tarefas cadastradas (${taskQuantity})`)
+      toast.info(`Você possui tarefas cadastradas para fazer (${taskQuantity})`)
     }
 
     if (taskQuantity >= 10) {
-      toast.error(`Você possui muitas tarefas cadastradas (${taskQuantity})`)
+      toast.error(
+        `Você possui muitas tarefas cadastradas para fazer (${taskQuantity})`
+      )
     }
   }, [taskQuantity])
 
   return (
     <ContainerDefault>
-      {taskQuantity === 0 ? (
+      {taskQuantity === 0 && taskQuantityCompleted === 0 ? (
         <Title>Você não possui tarefas cadastradas</Title>
       ) : (
         <AllTasks />

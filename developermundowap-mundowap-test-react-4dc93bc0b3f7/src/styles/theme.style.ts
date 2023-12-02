@@ -5,7 +5,15 @@ export const Theme = {
       main: '#fff',
       contrastText: '#141827',
       backgroundOpacity: {
-        opacity8: 'rgba(20, 24,39, 0.8)'
+        opacity1: 'rgba(20, 24,39, 0.1)',
+        opacity2: 'rgba(20, 24,39, 0.2)',
+        opacity3: 'rgba(20, 24,39, 0.3)',
+        opacity4: 'rgba(20, 24,39, 0.4)',
+        opacity5: 'rgba(20, 24,39, 0.5)',
+        opacity6: 'rgba(20, 24,39, 0.6)',
+        opacity7: 'rgba(20, 24,39, 0.7)',
+        opacity8: 'rgba(20, 24,39, 0.8)',
+        opacity9: 'rgba(20, 24,39, 0.9)',
       }
     },
     primary: {
@@ -38,7 +46,18 @@ export const Theme = {
     },
     alert: {
       main: '#ffad1f',
-      contrastText: '#e24e00'
+      contrastText: '#e24e00',
+      backgroundOpacity: {
+        opacity1: 'rgba(255, 173, 31, 0.1)',
+        opacity2: 'rgba(255, 173, 31, 0.2)',
+        opacity3: 'rgba(255, 173, 31, 0.3)',
+        opacity4: 'rgba(255, 173, 31, 0.4)',
+        opacity5: 'rgba(255, 173, 31, 0.5)',
+        opacity6: 'rgba(255, 173, 31, 0.6)',
+        opacity7: 'rgba(255, 173, 31, 0.7)',
+        opacity8: 'rgba(255, 173, 31, 0.8)',
+        opacity9: 'rgba(255, 173, 31, 0.9)',
+      }
     },
     white: {
       main: '#fff',

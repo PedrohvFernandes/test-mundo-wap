@@ -7,15 +7,16 @@ import { CheckBox, Container, Content, DescriptionTask } from './styles'
 
 // Formatar a data com o date-fns das tasks
 
-export function CardTaskCreation({ task }: Readonly<ITaskProps>) {
-  const { checkTaskItem } = usePushTaskList()
+export function CardTaskConcluded({ task }: Readonly<ITaskProps>) {
+  const { unCheckTaskItem } = usePushTaskList()
 
   return (
     <Container>
       <CheckBox
         type="checkbox"
+        checked={task.status === 'checked'}
         onChange={() => {
-          checkTaskItem(task.id)
+          unCheckTaskItem(task.id)
         }}
       />
       <Content>

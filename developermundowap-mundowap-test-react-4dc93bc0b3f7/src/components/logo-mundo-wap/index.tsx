@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import { ConfigRoutes } from '../../config'
+import { ConfigRoutes } from '@config/index'
 
-import { MundoWapURL } from '../../assets/logo'
+import { MundoWapURL } from '@assets/logo'
 import { LogoMundoWapStyled } from './styles'
 
 interface ILogoMundoWapProps {

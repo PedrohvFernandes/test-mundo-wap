@@ -1,22 +1,42 @@
 import { usePushTaskList } from '@hooks/push-task-list'
 import { Container, Content } from './styles'
 
-import { Title } from '@components/titles/Title'
+import { ButtonDefault } from '@components/buttons/button-default'
+import { Title } from '@components/titles/title'
+
+import { CardTaskConcluded } from './card-task-concluded'
+import { CardTaskCreation } from './card-task-creation'
 
 export function AllTasks() {
-  const { taskItems } = usePushTaskList()
+  const {
+    taskItems,
+    completedTasks,
+    clearListTask,
+    clearListTaskCompleted,
+    clearListTaskPending
+  } = usePushTaskList()
+
   return (
     <Container>
       <Title textalign="start">Suas tarefas</Title>
       <Content>
         {taskItems.map(task => (
-          <div key={task.id}>
-            <h1>{task.title}</h1>
-            <p>{task.description}</p>
-            <p>{task.id}</p>
-          </div>
+          <CardTaskCreation key={task.id} task={task} />
+        ))}
+
+        {completedTasks.map(task => (
+          <CardTaskConcluded key={task.id} task={task} />
         ))}
       </Content>
+      <ButtonDefault $bgContrast onClick={clearListTask}>
+        Limpar listas
+      </ButtonDefault>
+      <ButtonDefault $bgContrast onClick={clearListTaskPending}>
+        Limpar listas de pendentes
+      </ButtonDefault>
+      <ButtonDefault $bgContrast onClick={clearListTaskCompleted}>
+        Limpar lista de concluídas
+      </ButtonDefault>
     </Container>
   )
 }

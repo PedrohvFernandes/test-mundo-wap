@@ -1,9 +1,9 @@
-import { SubTitle } from '@components/titles/Subtitle'
+import { SubTitle } from '@components/titles/subtitle'
 
 import {
   ConfirmTaskCreationFormContainer,
   Description,
-  FormSectionContainer,
+  FormSectionContainer
 } from './styles'
 import { TaskFormInputs } from './task-form-inputs'
 

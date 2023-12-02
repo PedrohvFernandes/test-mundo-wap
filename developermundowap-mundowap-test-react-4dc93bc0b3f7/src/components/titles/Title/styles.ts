@@ -12,7 +12,7 @@ export const Title = styled.h1<ITitleProps>`
   animation: fadeIn 1.5s ease-in-out;
   text-align: ${({ textalign }) => textalign ?? 'center'};
 
-  @media ${({ theme }) => theme.deviceMax.laptop} {
+  @media ${({ theme }) => theme.deviceMax.tablet} {
     font-size: ${({ theme }) => theme.font.defaultL};
   }
 `

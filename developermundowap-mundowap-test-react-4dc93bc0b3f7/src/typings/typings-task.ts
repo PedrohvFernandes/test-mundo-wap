@@ -10,7 +10,7 @@ interface ITasks {
 }
 
 interface ITaskProps {
-  coffee: ITasks
+  task: ITasks
 }
 
 export type { ITasks, ITaskProps }
