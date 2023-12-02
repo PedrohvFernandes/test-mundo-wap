@@ -2,7 +2,7 @@ import { usePushTaskList } from '@hooks/push-task-list'
 import { Container, Content } from './styles'
 
 import { ButtonDefault } from '@components/buttons/button-default'
-import { Title } from '@components/titles/title'
+import { Title } from '@components/texts/tittles/title'
 
 import { CardTaskCreationDefault } from './card-task-creation-default'
 
@@ -20,11 +20,19 @@ export function AllTasks() {
       <Title textalign="start">Suas tarefas</Title>
       <Content>
         {taskItems.map(task => (
-          <CardTaskCreationDefault key={task.id} task={task} checkTaskItemOrUnCheckTaskItem='check' />
+          <CardTaskCreationDefault
+            key={task.id}
+            task={task}
+            checkTaskItemOrUnCheckTaskItem="check"
+          />
         ))}
 
         {completedTasks.map(task => (
-          <CardTaskCreationDefault key={task.id} task={task} checkTaskItemOrUnCheckTaskItem='uncheck' />
+          <CardTaskCreationDefault
+            key={task.id}
+            task={task}
+            checkTaskItemOrUnCheckTaskItem="uncheck"
+          />
         ))}
       </Content>
       <ButtonDefault $bgContrast onClick={clearListTask}>

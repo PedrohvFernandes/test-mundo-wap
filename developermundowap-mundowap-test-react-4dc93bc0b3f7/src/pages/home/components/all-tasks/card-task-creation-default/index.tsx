@@ -1,10 +1,10 @@
 import { ITaskProps } from '@typings/typings-task'
 
-import { RegularTitle } from '@components/titles/regular-title'
 import { RegularText } from '@components/texts/regular-text'
+import { RegularTitle } from '@components/texts/tittles/regular-title'
 
-import { usePushTaskList } from '@hooks/push-task-list'
 import { useGetDateFormatted } from '@hooks/get-date-formatted'
+import { usePushTaskList } from '@hooks/push-task-list'
 
 import {
   ButtonContainer,

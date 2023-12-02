@@ -16,6 +16,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   flex: 1;
@@ -31,6 +32,7 @@ export const Content = styled.div`
   transition: all 0.3s ease-in-out;
 
   @media ${({ theme }) => theme.deviceMax.mobileL} {
+    flex-direction: row;
     justify-content: space-between;
     padding: 1rem;
   }

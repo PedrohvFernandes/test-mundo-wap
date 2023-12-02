@@ -15,10 +15,14 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0rem;
 
   @media ${({ theme }) => theme.deviceMax.mobileL} {
     padding: 0 2rem;
+  }
+  
+  @media ${({ theme }) => theme.deviceMax.mobileS} {
+    padding: 0 1rem;
   }
 `
 

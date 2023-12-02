@@ -1,4 +1,4 @@
-import { SubTitle } from '@components/titles/subtitle'
+import { SubTitle } from '@components/texts/tittles/subtitle'
 
 import {
   ConfirmTaskCreationFormContainer,

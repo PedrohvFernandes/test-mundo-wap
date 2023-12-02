@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 import { ContainerDefault } from '@components/containers/container-default'
-import { Title } from '@components/titles/title'
+import { Title } from '@components/texts/tittles/title'
 import { usePushTaskList } from '@hooks/push-task-list'
 import { AllTasks } from './components/all-tasks'
 

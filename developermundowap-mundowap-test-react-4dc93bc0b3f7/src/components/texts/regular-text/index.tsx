@@ -1,12 +1,6 @@
-import { ReactNode } from 'react'
-
+import { IRegularText } from '../typings'
 import { Text } from './styles'
 
-interface IRegularTextProps {
-  children: ReactNode
-  textalign?: string
-}
-
-export function RegularText({ children, textalign }: Readonly<IRegularTextProps>) {
+export function RegularText({ children, textalign }: Readonly<IRegularText>) {
   return <Text textalign={textalign}>{children}</Text>
 }

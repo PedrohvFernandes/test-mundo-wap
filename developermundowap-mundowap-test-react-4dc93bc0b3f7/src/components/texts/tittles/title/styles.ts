@@ -1,10 +1,7 @@
 import styled from 'styled-components'
+import { IRegularTextStyled } from '../../typings'
 
-interface ITitleProps {
-  textalign?: string
-}
-
-export const Title = styled.h1<ITitleProps>`
+export const Title = styled.h1<IRegularTextStyled>`
   font-weight: 700;
   font-size: ${({ theme }) => theme.font.defaultS};
   line-height: 2rem;

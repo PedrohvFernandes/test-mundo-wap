@@ -1,10 +1,7 @@
+import { IRegularTextStyled } from '@components/texts/typings'
 import styled from 'styled-components'
 
-interface IRegularText {
-  textalign?: string
-}
-
-export const Text = styled.p<IRegularText>`
+export const Text = styled.p<IRegularTextStyled>`
   font-weight: 400;
   font-size: ${({ theme }) => theme.font.defaultXS};
   line-height: 2rem;
