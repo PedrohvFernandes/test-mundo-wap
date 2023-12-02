@@ -15,7 +15,11 @@ interface ITaskListContextType {
   // Adiciona uma task na lista
   addTaskToList: (task: ITasks) => void
   // Remove task da lista, ou seja a task foi feita
-  removeTaskItem: (taskItemId: number) => void
+  removeTaskItem: (taskItemId: string) => void
+  // Marca a task como feita
+  checkTaskItem: (taskItemId: string) => void
+  // Limpa a lista de tasks
+  clearListTask: () => void
 }
 
 // O contexto da lista de tasks  com o type definido, que possui um provider e um consumer
@@ -44,27 +48,28 @@ export function TaskListContextProvider({
 
   const taskQuantity = taskItems.length
 
-  // Adiciona um item na lista de tasks
-  function addTaskToList(task: ITasks) {
+  // Adiciona/cria um item na lista de tasks
+  const addTaskToList = (task: ITasks) => {
     // O findIndex retorna o index do item que esta sendo procurado, se nao encontrar retorna -1
     const taskAlreadyExistsInList = taskItems.findIndex(
-      taskItem => taskItem.name === task.name
+      taskItem => taskItem.title === task.title
     )
 
     const newTask = produce(taskItems, draft => {
-      // Se o item nao existir na lista, adiciona ele, se nao aumenta abre uma notificação dizendo que ja existe
+      // Se o item nao existir na lista, adiciona ele, se nao abre uma notificação dizendo que ja existe
       if (taskAlreadyExistsInList < 0) {
         draft.push(task)
+        toast.success(`A task: ${task.title} foi criada com sucesso! 🥳`)
       } else {
-        toast.error(`A task: ${task.name} já existe na lista de tarefas! 🤨`)
+        toast.error(`A task: ${task.title} já existe na lista de tarefas! 🤨`)
       }
     })
 
     setTaskItems(newTask)
   }
 
-  // Mudar a logica, fazer com que a task passe pro final da lista, e nao seja removida
-  function removeTaskItem(taskItemId: number) {
+  // Mudar a logica, fazer com que a task passe pro final da lista, e nao seja removida, no caso mudando o status dela para checked
+  const checkTaskItem = (taskItemId: string) => {
     const newTask = produce(taskItems, draft => {
       const taskAlreadyExistsInList = taskItems.findIndex(
         taskItem => taskItem.id === taskItemId
@@ -76,6 +81,29 @@ export function TaskListContextProvider({
     })
 
     setTaskItems(newTask)
+  }
+
+  // função para remover uma task da lista
+  const removeTaskItem = (taskItemId: string) => {
+    const newTask = produce(taskItems, draft => {
+      const taskAlreadyExistsInList = taskItems.findIndex(
+        taskItem => taskItem.id === taskItemId
+      )
+
+      if (taskAlreadyExistsInList >= 0) {
+        draft.splice(taskAlreadyExistsInList, 1)
+      }
+    })
+
+    setTaskItems(newTask)
+  }
+
+  // Criar uma função para editar uma task
+  // Criar uma função para gerar uma tarefa aleatória atraves da api
+
+  // Limpar todas as tarefas da lista
+  const clearListTask = () => {
+    setTaskItems([])
   }
 
   useEffect(() => {
@@ -92,7 +120,9 @@ export function TaskListContextProvider({
         taskItems,
         taskQuantity,
         addTaskToList,
-        removeTaskItem
+        removeTaskItem,
+        checkTaskItem,
+        clearListTask
       }}
     >
       {/* Aqui é tudo que vai ficar em volta dessa contexto, que vai ter acesso a isso, na maioria dos casos é a aplicação toda, a onde isso é feito no App.tsx ou main.tsx */}

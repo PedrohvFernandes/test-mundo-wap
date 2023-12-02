@@ -36,6 +36,10 @@ export const Theme = {
       main: '#17bf63',
       contrastText: '#0f9d58'
     },
+    alert: {
+      main: '#ffad1f',
+      contrastText: '#e24e00'
+    },
     white: {
       main: '#fff',
       contrastText: '#000'
@@ -48,6 +52,10 @@ export const Theme = {
         decremented1: 'rgba(255,117,24,0.1)',
         decremented5: 'rgba(255,117,24,0.05)'
       }
+    },
+    orange: {
+      main: '#ff7518',
+      contrastText: '#e24e00'
     },
     black: {
       main: '#000',

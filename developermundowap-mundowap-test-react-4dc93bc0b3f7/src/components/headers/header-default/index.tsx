@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { ButtonDefault } from '@components/buttons/button-default'
 import { LogoMundoWap } from '@components/logo-mundo-wap'
-import { ModalTaskCreation } from '@components/modal-task-creation'
+import { ModalTaskCreation } from '@pages/home/components/modal-task-creation'
 
 import { usePushTaskList } from '@hooks/push-task-list'
 

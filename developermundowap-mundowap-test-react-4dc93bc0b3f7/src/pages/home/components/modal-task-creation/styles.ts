@@ -4,7 +4,8 @@ import { X } from '@assets/icons'
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.color.background.backgroundOpacity.opacity8};
+  background-color: ${({ theme }) =>
+    theme.color.background.backgroundOpacity.opacity8};
   /* opacity: 0.8; */
   position: fixed;
   z-index: 100;
@@ -14,12 +15,15 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem; 
+  padding: 0 1rem;
+
+  @media ${({ theme }) => theme.deviceMax.mobileL} {
+    padding: 0 2rem;
+  }
 `
 
 export const ModalWrapper = styled.div`
-  width: 50rem;
-  height: 30rem;
+  height: 100%;
   box-shadow: ${({ theme }) => theme.color.tertiary.contrastText} 0px 0px 0px
     3px;
   background-color: ${({ theme }) => theme.color.background.main};
@@ -33,15 +37,11 @@ export const ModalWrapper = styled.div`
   border-top-right-radius: 2rem;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 1rem;
-`
+  padding: 1rem;
 
-export const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  line-height: 1.8;
-  color: ${({ theme }) => theme.color.background.contrastText};
+  @media ${({ theme }) => theme.deviceMax.mobileS} {
+    height: 35rem;
+  }
 `
 
 export const CloseModalButton = styled(X)`

@@ -1,14 +1,16 @@
 interface ITasks {
   // Id gerado automaticamente no momento que estiver criando uma nova task
-  id: number;
-  name: string;
-  description: string;
+  id: string
+  title?: string
+  description?: string
   // O date vai ser gerado automaticamente no momento que estiver criando uma nova task
-  date: Date;
+  createdAt: Date
+  // No inicio a task vai estar como pendente, mas quando o usuário clicar no checkbox, o status vai mudar para checked
+  status: 'checked' | 'pending'
 }
 
 interface ITaskProps {
-  coffee: ITasks;
+  coffee: ITasks
 }
 
-export type { ITasks, ITaskProps };
+export type { ITasks, ITaskProps }

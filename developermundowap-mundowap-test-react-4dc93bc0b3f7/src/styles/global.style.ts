@@ -67,4 +67,15 @@ export const GlobalStyle = createGlobalStyle`
           25px;
     }
   }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `
