@@ -245,7 +245,7 @@ export function TaskListContextProvider({
     }
   }
 
-  // Criar uma função para gerar uma tarefa aleatória atraves da api
+  // função para gerar uma tarefa aleatória atraves da api
   const generateRandomTask = async () => {
     try {
       setTaskRandomLoading(true)
