@@ -8,7 +8,7 @@ import { usePushTaskList } from '@hooks/push-task-list'
 
 import {
   ContainerContentHeader,
-  HeaderDefaultStyled,
+  HeaderDefaultStyledContainer,
   QuantityTasks
 } from './styles'
 
@@ -22,7 +22,7 @@ export function HeaderDefault() {
   }
 
   return (
-    <HeaderDefaultStyled>
+    <HeaderDefaultStyledContainer>
       <ContainerContentHeader>
         <LogoMundoWap width={3} />
         <strong>
@@ -37,6 +37,6 @@ export function HeaderDefault() {
         </ButtonDefault>
         <ModalTaskCreation showModal={showModal} setShowModal={setShowModal} />
       </ContainerContentHeader>
-    </HeaderDefaultStyled>
+    </HeaderDefaultStyledContainer>
   )
 }

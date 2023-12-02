@@ -6,7 +6,7 @@ interface IQuantityTasksProps {
   quantityTasks: number
 }
 
-export const HeaderDefaultStyled = styled.header`
+export const HeaderDefaultStyledContainer = styled.header`
   position: fixed;
   width: 100%;
   z-index: 50;
@@ -15,9 +15,6 @@ export const HeaderDefaultStyled = styled.header`
   padding: 0.5rem;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   animation: shadowAnimationOrange 5s infinite;
 `
 export const ContainerContentHeader = styled(

@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ContainerDefaultSpaceBetweenContent = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 1rem;
 
   width: 100%;
   margin-inline: auto;
@@ -13,5 +14,9 @@ export const ContainerDefaultSpaceBetweenContent = styled.div`
 
   @media ${props => props.theme.deviceMax.laptopL} {
     max-width: 1400px;
+  }
+
+  @media ${props => props.theme.deviceMax.tablet} {
+    flex-direction: row;
   }
 `
