@@ -197,9 +197,10 @@ export function TaskListContextProvider({
     setCompletedTasks(newTask)
   }
 
-  // Criar uma função para editar uma task
+  // função para editar uma task
   const editTaskItem = (taskItemId: string) => {
     setShowModal(prev => !prev)
+    // Aqui a gente seta o estado de taskToEdit com a task que foi clicada para editar
     setTaskToEdit({
       taskToEdit: {
         task: taskItems.find(taskItem => taskItem.id === taskItemId) as ITasks,
@@ -207,31 +208,36 @@ export function TaskListContextProvider({
       }
     })
   }
-
+  // E aqui é a função em si que vai editar a task. Obs: essas duas funções são passadas para o componente formTaskCreation pois é la que a task é editada ou criada por conta do use-hook-form
   const addTaskToListEditing = (task: ITasks) => {
-    produce(taskItems, draft => {
-      const taskAlreadyExistsInList = completedTasks.findIndex(
-        taskItem => taskItem.id === task.id
-      )
-      console.log(taskItems)
-      console.log(task.id)
-      if (taskAlreadyExistsInList >= 0) {
-        setTaskItems([
-          ...taskItems,
-          {
-            ...taskItems[taskAlreadyExistsInList],
-            title: task.title,
-            description: task.description,
-            createdAt: task.createdAt,
-            status: task.status
-          }
-        ])
-        toast.success(
-          `A task: ${completedTasks[taskAlreadyExistsInList].title} foi alterada com sucesso! 🥳`
-        )
+    console.log(task)
+    const taskIndex = taskItems.findIndex(
+      taskItem => taskItem.id === task.id
+    )
+    const taskAlreadyExistsInList = taskItems.findIndex(
+      taskItem =>
+        taskItem.title?.toLocaleLowerCase() === task.title?.toLocaleLowerCase()
+    )
+    if(taskAlreadyExistsInList >= 0) {
+      toast.error(`A task: ${task.title} já existe na lista de tarefas! 🤨`)
+      return
+    }
+
+    if (taskIndex >= 0) {
+      const updatedTaskItems = [...taskItems]
+      updatedTaskItems[taskIndex] = {
+        ...updatedTaskItems[taskIndex],
+        title: task.title,
+        description: task.description,
+        createdAt: task.createdAt
       }
-    })
+
+      setTaskItems(updatedTaskItems)
+
+      toast.success(`A tarefa foi alterada com sucesso! 🥳`)
+    }
   }
+
   // Criar uma função para gerar uma tarefa aleatória atraves da api
 
   // Limpar todas as tarefas da lista

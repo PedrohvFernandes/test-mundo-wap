@@ -33,6 +33,7 @@ export function FormTaskCreation() {
   const confirmTaskCreationForm = useForm<TaskData>({
     resolver: yupResolver(taskSchema),
     defaultValues: {
+      // Se ja existir uma task para editar então pegue os dados dela, se não crie uma nova task
       id: taskToEdit?.taskToEdit?.task.id ?? uuidv4(),
       createdAt: new Date(Date.now()),
       status: 'pending',

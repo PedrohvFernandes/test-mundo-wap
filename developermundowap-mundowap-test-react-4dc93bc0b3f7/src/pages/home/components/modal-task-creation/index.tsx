@@ -49,7 +49,7 @@ export function ModalTaskCreation({
         clearEditTask()
       }
     },
-    [setShowModal, showModal]
+    [setShowModal, showModal, clearEditTask]
   )
 
   useEffect(() => {
