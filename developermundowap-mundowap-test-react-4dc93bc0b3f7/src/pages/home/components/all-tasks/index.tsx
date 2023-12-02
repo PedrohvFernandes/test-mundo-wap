@@ -4,8 +4,7 @@ import { Container, Content } from './styles'
 import { ButtonDefault } from '@components/buttons/button-default'
 import { Title } from '@components/titles/title'
 
-import { CardTaskConcluded } from './card-task-concluded'
-import { CardTaskCreation } from './card-task-creation'
+import { CardTaskCreationDefault } from './card-task-creation-default'
 
 export function AllTasks() {
   const {
@@ -21,11 +20,11 @@ export function AllTasks() {
       <Title textalign="start">Suas tarefas</Title>
       <Content>
         {taskItems.map(task => (
-          <CardTaskCreation key={task.id} task={task} />
+          <CardTaskCreationDefault key={task.id} task={task} checkTaskItemOrUnCheckTaskItem='check' />
         ))}
 
         {completedTasks.map(task => (
-          <CardTaskConcluded key={task.id} task={task} />
+          <CardTaskCreationDefault key={task.id} task={task} checkTaskItemOrUnCheckTaskItem='uncheck' />
         ))}
       </Content>
       <ButtonDefault $bgContrast onClick={clearListTask}>

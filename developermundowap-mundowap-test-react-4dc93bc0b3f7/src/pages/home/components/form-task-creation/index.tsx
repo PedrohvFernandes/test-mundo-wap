@@ -33,7 +33,7 @@ export function FormTaskCreation() {
     resolver: yupResolver(taskSchema),
     defaultValues: {
       id: uuidv4(),
-      createdAt: new Date(),
+      createdAt: new Date(Date.now()),
       status: 'pending'
     }
   })

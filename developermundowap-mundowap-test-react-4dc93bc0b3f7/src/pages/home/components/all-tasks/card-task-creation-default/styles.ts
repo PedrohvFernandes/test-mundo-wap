@@ -8,38 +8,54 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
   flex: 1;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
   background-color: ${({ theme }) =>
-    theme.color.background.backgroundOpacity.opacity5};
-  > h3 {
+    theme.color.background.backgroundOpacity.opacity8};
+  > p {
     color: ${({ theme }) => theme.color.black.contrastText};
   }
   padding: 0.75rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease-in-out;
-
-  &:hover {
-    background-color: ${({ theme }) =>
-      theme.color.background.backgroundOpacity.opacity8};
-  }
 `
+
+export const ContentDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  > h3 {
+    color: ${({ theme }) => theme.color.black.contrastText};
+  } 
+`
+
 export const CheckBox = styled.input`
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 0.25rem;
   cursor: pointer;
+
+  &:hover + ${Content} {
+    background-color: ${({ theme }) => theme.color.success.main};
+  }
+
+  &:checked + ${Content} {
+    background-color: ${({ theme }) => theme.color.success.main};
+  }
+
+  &:checked:hover + ${Content} {
+    background-color: ${({ theme }) =>
+      theme.color.background.backgroundOpacity.opacity8};
+  }
   /* > p {
     &:hover + ${Content} {
       background-color: lightcoral; 
     }
   } */
-
-  &:hover + ${Content} {
-    background-color: ${({ theme }) => theme.color.success.main};
-  }
 `
 
 export const DescriptionTask = styled.p`

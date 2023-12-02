@@ -140,7 +140,8 @@ export function TaskListContextProvider({
           ...completedTasks,
           {
             ...taskItems[taskAlreadyExistsInList],
-            status: 'checked'
+            status: 'checked',
+            createdAt: new Date(Date.now())
           }
         ])
         toast.success(
@@ -165,7 +166,8 @@ export function TaskListContextProvider({
           ...taskItems,
           {
             ...completedTasks[taskAlreadyExistsInList],
-            status: 'pending'
+            status: 'pending',
+            createdAt: new Date(Date.now())
           }
         ])
         toast.success(

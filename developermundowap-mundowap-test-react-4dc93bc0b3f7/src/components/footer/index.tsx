@@ -2,7 +2,7 @@ import { GithubIcon } from '@assets/icons'
 
 import { ConfigBases } from '@config/index'
 
-import useGetDateFormatted from '@hooks/get-date-formatted'
+import { useGetDateFormatted } from '@hooks/get-date-formatted'
 
 import { LogoMundoWap } from '../logo-mundo-wap'
 
@@ -11,14 +11,14 @@ import { ContainerDefaultSpaceBetweenContent } from '@components/containers/cont
 import { FooterContainer, FooterLogo, LinkGithub } from './styles'
 
 export function Footer() {
-  const { formattedCurrentYear } = useGetDateFormatted()
+  const { formattedCurrentYearDefault } = useGetDateFormatted()
 
   return (
     <FooterContainer>
       <ContainerDefaultSpaceBetweenContent>
         <FooterLogo>
           <LogoMundoWap />
-          <span>© {formattedCurrentYear().year} Mundo Wap.</span>
+          <span>© {formattedCurrentYearDefault().year} Mundo Wap.</span>
         </FooterLogo>
         <LinkGithub
           href={ConfigBases.mundoWap.gitHub.baseUrls.perfil}
