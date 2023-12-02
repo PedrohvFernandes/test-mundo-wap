@@ -9,10 +9,10 @@ interface IQuantityTasksProps {
 export const HeaderDefaultStyledContainer = styled.header`
   position: fixed;
   width: 100%;
+  padding: 0.5rem;
   z-index: 50;
   background-color: ${props => props.theme.color.background.contrastText};
   color: ${props => props.theme.color.background.main};
-  padding: 0.5rem;
   top: 0;
   left: 0;
   animation: shadowAnimationOrange 5s infinite;
