@@ -1,4 +1,6 @@
+import { api } from '@lib/axios'
 import { toast } from 'react-toastify'
+import { v4 as uuidv4 } from 'uuid'
 
 // O produce é uma função do immer que recebe um estado e uma função que vai modificar esse estado, e retorna um novo estado. Ele deixa o código mais legível e mais fácil de entender, nao alterando a forma do react ser perfomatico que é a questao da imutabilidade.
 import { produce } from 'immer'
@@ -42,9 +44,13 @@ interface ITaskListContextType {
   taskToEdit: IConfirmTaskCreationFormProps | undefined
   // Editando uma task
   addTaskToListEditing: (task: ITasks) => void
-
   // Limpa o edit task
   clearEditTask: () => void
+
+  // Gera uma task aleatória
+  generateRandomTask: () => void
+  // O estado de loading da task aleatória
+  taskRandomLoading: boolean
 
   // Limpa a lista de tasks
   clearListTask: () => void
@@ -93,6 +99,7 @@ export function TaskListContextProvider({
 
   const [showModal, setShowModal] = useState<boolean>(false)
   const [taskToEdit, setTaskToEdit] = useState<IConfirmTaskCreationFormProps>()
+  const [taskRandomLoading, setTaskRandomLoading] = useState<boolean>(false)
 
   const taskQuantity = taskItems.length
   const taskQuantityCompleted = completedTasks.length
@@ -109,6 +116,7 @@ export function TaskListContextProvider({
       if (taskAlreadyExistsInList < 0) {
         draft.push(task)
         toast.success(`A task: ${task.title} foi criada com sucesso! 🥳`)
+        setShowModal(prev => !prev)
       } else {
         toast.error(`A task: ${task.title} já existe na lista de tarefas! 🤨`)
       }
@@ -210,15 +218,12 @@ export function TaskListContextProvider({
   }
   // E aqui é a função em si que vai editar a task. Obs: essas duas funções são passadas para o componente formTaskCreation pois é la que a task é editada ou criada por conta do use-hook-form
   const addTaskToListEditing = (task: ITasks) => {
-    console.log(task)
-    const taskIndex = taskItems.findIndex(
-      taskItem => taskItem.id === task.id
-    )
+    const taskIndex = taskItems.findIndex(taskItem => taskItem.id === task.id)
     const taskAlreadyExistsInList = taskItems.findIndex(
       taskItem =>
         taskItem.title?.toLocaleLowerCase() === task.title?.toLocaleLowerCase()
     )
-    if(taskAlreadyExistsInList >= 0) {
+    if (taskAlreadyExistsInList >= 0) {
       toast.error(`A task: ${task.title} já existe na lista de tarefas! 🤨`)
       return
     }
@@ -235,10 +240,54 @@ export function TaskListContextProvider({
       setTaskItems(updatedTaskItems)
 
       toast.success(`A tarefa foi alterada com sucesso! 🥳`)
+      setTaskToEdit(undefined)
+      setShowModal(prev => !prev)
     }
   }
 
   // Criar uma função para gerar uma tarefa aleatória atraves da api
+  const generateRandomTask = async () => {
+    try {
+      setTaskRandomLoading(true)
+      const response = await api.get('/api/activity')
+
+      const newTask: ITasks = {
+        id: uuidv4(),
+        title: response.data.activity,
+        description: response.data.type,
+        createdAt: new Date(Date.now()),
+        status: 'pending'
+      }
+
+      addTaskToList(newTask)
+    } catch (error) {
+      toast.error('Não foi possível gerar uma tarefa aleatória! 🤨')
+    } finally {
+      setTaskRandomLoading(false)
+    }
+    // const response = await fetch('https://www.boredapi.com/api/activity')
+    // const data = await response.json()
+    // const newTask: ITasks = {
+    //   id: uuidv4(),
+    //   title: data.activity,
+    //   description: data.type,
+    //   createdAt: new Date(Date.now()),
+    //   status: 'pending'
+    // }
+
+    // addTaskToList(newTask)
+    // const response = await fetch('https://api.quotable.io/random')
+    // const data = await response.json()
+    // const newTask: ITasks = {
+    //   id: uuidv4(),
+    //   title: data.content,
+    //   description: data.author,
+    //   createdAt: new Date(Date.now()),
+    //   status: 'pending'
+    // }
+
+    // addTaskToList(newTask)
+  }
 
   // Limpar todas as tarefas da lista
   const clearListTask = () => {
@@ -306,7 +355,9 @@ export function TaskListContextProvider({
         openModal: setShowModal,
         taskToEdit,
         clearEditTask,
-        addTaskToListEditing
+        addTaskToListEditing,
+        generateRandomTask,
+        taskRandomLoading
       }}
     >
       {/* Aqui é tudo que vai ficar em volta dessa contexto, que vai ter acesso a isso, na maioria dos casos é a aplicação toda, a onde isso é feito no App.tsx ou main.tsx */}

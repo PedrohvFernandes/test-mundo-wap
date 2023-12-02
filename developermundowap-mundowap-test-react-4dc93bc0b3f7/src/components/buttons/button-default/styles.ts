@@ -25,4 +25,9 @@ export const ButtonDefaultStyled = styled.button<IButtonDefaultStyledProps>`
     background-color: ${props => props.theme.color.tertiary.main};
     color: ${props => props.theme.color.background.main};
   }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 `

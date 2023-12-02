@@ -16,7 +16,9 @@ import { ConfirmTaskCreationContainer } from './styles'
 
 const taskSchema: ObjectSchema<ITasks> = object().shape({
   id: string().uuid().required(),
-  title: string().min(5, 'O título da tarefá deve ter no mínimo 5 caracteres!').max(20, 'O título da tarefa deve ter no máximo 20 caracteres!'),
+  title: string()
+    .min(5, 'O título da tarefá deve ter no mínimo 5 caracteres!')
+    .max(20, 'O título da tarefa deve ter no máximo 20 caracteres!'),
   description: string()
     .min(10, 'A descrição deve ter no mínimo 10 caracteres!')
     .max(100, 'A descrição deve ter no máximo 100 caracteres!'),
@@ -27,7 +29,13 @@ const taskSchema: ObjectSchema<ITasks> = object().shape({
 type TaskData = InferType<typeof taskSchema>
 
 export function FormTaskCreation() {
-  const { addTaskToList, taskToEdit, addTaskToListEditing } = usePushTaskList()
+  const {
+    addTaskToList,
+    taskToEdit,
+    addTaskToListEditing,
+    generateRandomTask,
+    taskRandomLoading
+  } = usePushTaskList()
 
   // Quando fosse editar, era repassar o id da task para o form, recriar a data e o status + o que foi passado para editar e passar para o form
   const confirmTaskCreationForm = useForm<TaskData>({
@@ -65,6 +73,16 @@ export function FormTaskCreation() {
         <ButtonDefault type="submit" $bgContrast={true}>
           {taskToEdit?.taskToEdit?.edit ? 'Editar' : 'Criar'} tarefa
         </ButtonDefault>
+        {!taskToEdit?.taskToEdit?.edit && (
+          <ButtonDefault
+            onClick={generateRandomTask}
+            $bgContrast={true}
+            type="button"
+            disabled={taskRandomLoading}
+          >
+            {taskRandomLoading ? 'Gerando tarefa...' : 'Gerar tarefa aleatória'}
+          </ButtonDefault>
+        )}
       </ConfirmTaskCreationContainer>
     </FormProvider>
   )
