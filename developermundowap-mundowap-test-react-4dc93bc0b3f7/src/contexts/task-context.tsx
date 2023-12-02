@@ -52,7 +52,7 @@ export function TaskListContextProvider({
   const addTaskToList = (task: ITasks) => {
     // O findIndex retorna o index do item que esta sendo procurado, se nao encontrar retorna -1
     const taskAlreadyExistsInList = taskItems.findIndex(
-      taskItem => taskItem.title === task.title
+      taskItem => taskItem.title?.toLowerCase === task.title?.toLowerCase
     )
 
     const newTask = produce(taskItems, draft => {

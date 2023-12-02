@@ -27,7 +27,7 @@ export function HeaderDefault() {
         <LogoMundoWap width={3} />
         <strong>
           Quantidade de tarefas:
-          <QuantityTasks quantityTasks={taskQuantity}>
+          <QuantityTasks quantitytasks={taskQuantity}>
             {taskQuantity}
           </QuantityTasks>
         </strong>

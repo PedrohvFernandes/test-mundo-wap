@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ContainerDefaultSpaceBetweenContent } from '@components/containers/container-space-between/styles'
 
 interface IQuantityTasksProps {
-  quantityTasks: number
+  quantitytasks: number
 }
 
 export const HeaderDefaultStyledContainer = styled.header`
@@ -36,11 +36,11 @@ export const ContainerContentHeader = styled(
   }
 `
 export const QuantityTasks = styled.strong<IQuantityTasksProps>`
-  background-color: ${({ theme, quantityTasks }) => {
-    if (quantityTasks >= 10) {
+  background-color: ${({ theme, quantitytasks }) => {
+    if (quantitytasks >= 10) {
       return theme.color.error.main
     }
-    if (quantityTasks <= 3) {
+    if (quantitytasks <= 3) {
       return theme.color.success.main
     }
 

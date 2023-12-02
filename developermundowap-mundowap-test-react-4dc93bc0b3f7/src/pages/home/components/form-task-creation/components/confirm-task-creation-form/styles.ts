@@ -6,19 +6,6 @@ export const ConfirmTaskCreationFormContainer = styled.div`
   gap: 0.75rem;
 `
 
-export const Title = styled.h2`
-  font-weight: 700;
-  font-size: ${({ theme }) => theme.font.defaultS};
-  line-height: 2rem;
-  color: ${({ theme }) => theme.color.orange.main};
-  animation: fadeIn 1.5s ease-in-out;
-  text-align: center;
-
-  @media ${({ theme }) => theme.deviceMax.laptop} {
-    font-size: ${({ theme }) => theme.font.defaultL};
-  }
-`
-
 export const FormSectionContainer = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.color.background.contrastText};
